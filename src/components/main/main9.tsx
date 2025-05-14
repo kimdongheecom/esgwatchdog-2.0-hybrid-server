@@ -9,7 +9,8 @@ import {
   faBox,
   faSyncAlt,
   faArrowRight,
-  faArrowLeft
+  faArrowLeft,
+  faArrowDown
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
@@ -89,7 +90,7 @@ const deploymentSteps: DeploymentStep[] = [
 ];
 
 const TechCard: React.FC<{ layer: TechLayer }> = ({ layer }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 w-full">
     <div className={`flex items-center mb-4 text-${layer.color}-500 dark:text-${layer.color}-400`}>
       <div className={`w-12 h-12 bg-${layer.color}-100 dark:bg-${layer.color}-900/30 rounded-full flex items-center justify-center mr-4`}>
         <FontAwesomeIcon 
@@ -132,10 +133,10 @@ const DeploymentFlow: React.FC = () => (
     <h3 className="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-200">
       배포 전략
     </h3>
-    <div className="flex items-center justify-center gap-4">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
       {deploymentSteps.map((step, index) => (
         <React.Fragment key={index}>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex-1 max-w-[200px]">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full sm:flex-1 sm:max-w-[200px]">
             <div className="flex items-center mb-2">
               <FontAwesomeIcon 
                 icon={step.icon} 
@@ -151,8 +152,14 @@ const DeploymentFlow: React.FC = () => (
           </div>
           {index < deploymentSteps.length - 1 && (
             <FontAwesomeIcon 
-              icon={faArrowRight} 
-              className="text-gray-400 dark:text-gray-600"
+              icon={index % 2 === 0 ? faArrowRight : faArrowDown} 
+              className="text-gray-400 dark:text-gray-600 hidden sm:block"
+            />
+          )}
+          {index < deploymentSteps.length - 1 && (
+            <FontAwesomeIcon 
+              icon={faArrowDown} 
+              className="text-gray-400 dark:text-gray-600 block sm:hidden my-2"
             />
           )}
         </React.Fragment>
@@ -194,12 +201,12 @@ const TechArchitecture: React.FC<TechArchitectureProps> = ({ isActive = false })
       id="slide9" 
       className={`min-h-screen w-full ${isActive ? 'block' : 'hidden'}`}
     >
-      <div className="p-8 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
+      <div className="p-4 sm:p-8 max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-center text-gray-800 dark:text-gray-100">
           기술·아키텍처 요구사항
         </h2>
         
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {techLayers.map((layer, index) => (
             <TechCard key={index} layer={layer} />
           ))}
@@ -207,15 +214,15 @@ const TechArchitecture: React.FC<TechArchitectureProps> = ({ isActive = false })
         
         <DeploymentFlow />
 
-        <div className="flex justify-center mt-12 space-x-4">
+        <div className="flex flex-col sm:flex-row justify-center mt-8 sm:mt-12 space-y-4 sm:space-y-0 sm:space-x-4">
           <Link href="/main/main8/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
               이전 슬라이드로 돌아가기
-              <FontAwesomeIcon icon={faArrowLeft} className="ml-2" />
             </button>
           </Link>
           <Link href="/main/main10/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
               다음 슬라이드로 이동
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </button>
@@ -223,7 +230,7 @@ const TechArchitecture: React.FC<TechArchitectureProps> = ({ isActive = false })
         </div>
       </div>
       
-      <div className="mt-16 text-right text-gray-500 dark:text-gray-400">
+      <div className="mt-8 sm:mt-16 text-right text-gray-500 dark:text-gray-400 pr-4">
         9 / 16
       </div>
     </section>

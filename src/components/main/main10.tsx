@@ -112,7 +112,7 @@ const qualityMetrics: QualityMetric[] = [
 ];
 
 const DataSourceCard: React.FC<{ source: DataSource }> = ({ source }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
     <div className="flex items-start">
       <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-3">
         <FontAwesomeIcon 
@@ -127,7 +127,7 @@ const DataSourceCard: React.FC<{ source: DataSource }> = ({ source }) => (
         <p className="text-sm text-gray-600 dark:text-gray-400">
           {source.description}
         </p>
-        <div className="flex gap-2 mt-2">
+        <div className="flex flex-wrap gap-2 mt-2">
           {source.tags.map((tag, index) => (
             <span 
               key={index}
@@ -143,7 +143,7 @@ const DataSourceCard: React.FC<{ source: DataSource }> = ({ source }) => (
 );
 
 const ProcessingCard: React.FC<{ item: ProcessingItem }> = ({ item }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
     <div className="flex items-start">
       <div className="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mr-3">
         <FontAwesomeIcon 
@@ -171,7 +171,7 @@ const ProcessingCard: React.FC<{ item: ProcessingItem }> = ({ item }) => (
 );
 
 const QualityMetricCard: React.FC<{ metric: QualityMetric }> = ({ metric }) => (
-  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 w-full">
     <div className="flex justify-between items-center mb-2">
       <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
         {metric.name}
@@ -195,19 +195,19 @@ const DataRequirements: React.FC<DataRequirementsProps> = ({ isActive = false })
       id="slide10" 
       className={`min-h-screen w-full ${isActive ? 'block' : 'hidden'}`}
     >
-      <div className="p-8 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
+      <div className="p-4 sm:p-8 max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-center text-gray-800 dark:text-gray-100">
           데이터 요구사항
         </h2>
         
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* 데이터 원천 */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center text-gray-800 dark:text-gray-200">
               <FontAwesomeIcon icon={faDatabase} className="mr-2" />
               데이터 원천
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {dataSources.map((source, index) => (
                 <DataSourceCard key={index} source={source} />
               ))}
@@ -216,11 +216,11 @@ const DataRequirements: React.FC<DataRequirementsProps> = ({ isActive = false })
           
           {/* 데이터 처리 */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center text-gray-800 dark:text-gray-200">
               <FontAwesomeIcon icon={faCogs} className="mr-2" />
               데이터 처리 요구사항
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {processingItems.map((item, index) => (
                 <ProcessingCard key={index} item={item} />
               ))}
@@ -229,11 +229,11 @@ const DataRequirements: React.FC<DataRequirementsProps> = ({ isActive = false })
           
           {/* 데이터 품질 관리 */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 flex items-center text-gray-800 dark:text-gray-200">
               <FontAwesomeIcon icon={faCheckCircle} className="mr-2" />
               데이터 품질 관리
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {qualityMetrics.map((metric, index) => (
                 <QualityMetricCard key={index} metric={metric} />
               ))}
@@ -241,15 +241,15 @@ const DataRequirements: React.FC<DataRequirementsProps> = ({ isActive = false })
           </div>
         </div>
 
-        <div className="flex justify-center mt-12 space-x-4">
+        <div className="flex flex-col sm:flex-row justify-center mt-8 sm:mt-12 space-y-4 sm:space-y-0 sm:space-x-4">
           <Link href="/main/main9/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
               이전 슬라이드로 돌아가기
-              <FontAwesomeIcon icon={faArrowLeft} className="ml-2" />
             </button>
           </Link>
           <Link href="/main/main11/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
               다음 슬라이드로 이동
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </button>
@@ -257,7 +257,7 @@ const DataRequirements: React.FC<DataRequirementsProps> = ({ isActive = false })
         </div>
       </div>
       
-      <div className="mt-16 text-right text-gray-500 dark:text-gray-400">
+      <div className="mt-8 sm:mt-16 text-right text-gray-500 dark:text-gray-400 pr-4">
         10 / 16
       </div>
     </section>

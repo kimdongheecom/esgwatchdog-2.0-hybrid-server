@@ -131,7 +131,7 @@ const FeatureCard: React.FC<{
   items: FeatureItem[];
   fullWidth?: boolean;
 }> = ({ icon, title, items, fullWidth }) => (
-  <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${fullWidth ? 'col-span-2' : ''}`}>
+  <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 ${fullWidth ? 'w-full' : ''}`}>
     <div className="flex items-center mb-6">
       <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
         <FontAwesomeIcon 
@@ -146,7 +146,7 @@ const FeatureCard: React.FC<{
     
     <ul className={`space-y-4 ${fullWidth ? 'flex flex-wrap gap-4' : ''}`}>
       {items.map((item, index) => (
-        <li key={index} className={`flex items-start ${fullWidth ? 'flex-1 min-w-[200px]' : ''}`}>
+        <li key={index} className={`flex items-start ${fullWidth ? 'flex-1 min-w-[150px] sm:min-w-[200px]' : ''}`}>
           <div className="w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3">
             <FontAwesomeIcon 
               icon={item.icon} 
@@ -154,7 +154,7 @@ const FeatureCard: React.FC<{
             />
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="font-medium text-gray-800 dark:text-gray-200">
                 {item.title}
               </span>
@@ -209,31 +209,35 @@ const CoreFeatures: React.FC<CoreFeaturesProps> = ({ isActive = false }) => {
       id="slide8" 
       className={`min-h-screen w-full ${isActive ? 'block' : 'hidden'}`}
     >
-      <div className="p-8 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
+      <div className="p-4 sm:p-8 max-w-6xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-center text-gray-800 dark:text-gray-100">
           핵심 기능 요구사항
         </h2>
         
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
           <FeatureCard 
             icon={faDatabase}
             title="1. 데이터 수집·전처리"
             items={dataCollectionFeatures}
+            fullWidth
           />
           <FeatureCard 
             icon={faBrain}
             title="2. AI 분석"
             items={aiAnalysisFeatures}
+            fullWidth
           />
           <FeatureCard 
             icon={faBalanceScale}
             title="3. 규제 정합성 평가"
             items={regulatoryFeatures}
+            fullWidth
           />
           <FeatureCard 
             icon={faFilePdf}
             title="4. 보고서 자동 생성"
             items={reportFeatures}
+            fullWidth
           />
           <FeatureCard 
             icon={faTachometerAlt}
@@ -243,15 +247,15 @@ const CoreFeatures: React.FC<CoreFeaturesProps> = ({ isActive = false }) => {
           />
         </div>
 
-        <div className="flex justify-center mt-12 space-x-4">
+        <div className="flex flex-col sm:flex-row justify-center mt-8 sm:mt-12 space-y-4 sm:space-y-0 sm:space-x-4">
           <Link href="/main/main7/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
+              <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
               이전 슬라이드로 돌아가기
-              <FontAwesomeIcon icon={faArrowLeft} className="ml-2" />
             </button>
           </Link>
           <Link href="/main/main9/">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium flex items-center shadow-md transition-colors duration-300">
+            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium flex items-center justify-center shadow-md transition-colors duration-300 w-full sm:w-auto">
               다음 슬라이드로 이동
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </button>
@@ -259,7 +263,7 @@ const CoreFeatures: React.FC<CoreFeaturesProps> = ({ isActive = false }) => {
         </div>
       </div>
       
-      <div className="mt-16 text-right text-gray-500 dark:text-gray-400">
+      <div className="mt-8 sm:mt-16 text-right text-gray-500 dark:text-gray-400 pr-4">
         8 / 16
       </div>
     </section>
